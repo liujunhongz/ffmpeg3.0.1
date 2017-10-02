@@ -164,7 +164,10 @@ rtmp协议库，ffmpeg中原生的rtmp库支持不太好，所以一般使用这
 前面的所有库都没问题，就这个librtmp折腾了半天，一开始没有去改它的Makefile把SHARED置成no, 这样make会编译出静态和动态库，然后make install会把静态和动态库都拷贝到$(HOME)/ffmpeg_build/lib下,然后后面在编译ffmpeg的时候，即使configure时指定了--pkg-config-flags="--static"这样的让链接器链接静态库的参数, 可是等链接器链接时却发现lib下有动态库，还是会优先链接动态库，这样编译出来的ffmpeg中librtmp是动态链接的，但是没有正确设置LD_LIBRARY_PATH参数的话就找不到这个库，从而导致无法运行。
 
 - Ubuntu安装git时出错，git-compat-util.h:280:25: fatal error: openssl/ssl.h: 没有那个文件或目录
-`sudo apt-get install libssl-dev`  
+
+```
+sudo apt-get install libssl-dev`  
+```
 
 ```
 cd ~/ffmpeg_sources
